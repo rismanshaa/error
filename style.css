@@ -1,0 +1,137 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: #00ffff;
+  font-family: 'Press Start 2P', cursive;
+  overflow: hidden;
+  text-align: center;
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 1s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+#fireworks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at bottom, #001, #000);
+  z-index: 0;
+}
+
+#birthday-text {
+  color: #fff;
+  z-index: 2;
+  font-size: 1rem;
+  animation: glow 1.5s ease-in-out infinite alternate;
+  text-shadow: 0 0 10px #00faff;
+  margin-top: 100px;
+}
+
+#birthday-text, #continue-btn {
+  position: relative;
+  z-index: 5; /* biar muncul di atas canvas */
+}
+
+#continue-btn {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* biar smooth muncul setelah fireworks */
+#continue-btn.show {
+  opacity: 1;
+}
+
+
+@keyframes glow {
+  from { text-shadow: 0 0 5px #00faff; }
+  to { text-shadow: 0 0 20px #ff4aff; }
+}
+
+button {
+  font-family: 'Press Start 2P', cursive;
+  background: #0af;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  margin-top: 30px;
+  box-shadow: 0 0 10px #0af;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #09f;
+}
+
+#wish-text {
+  max-width: 80%;
+  line-height: 1.6;
+  color: #fff;
+  font-size: 0.6rem;
+  white-space: pre-line;
+  text-shadow: 0 0 5px #0ff;
+}
+
+#photo-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 90%;
+  margin: 0 auto;
+  height: 80vh; /* tinggi tampilan area foto */
+  overflow-y: scroll; /* scroll ke bawah */
+  overflow-x: hidden; /* biar ga bisa geser ke samping */
+  padding: 20px;
+}
+
+
+.polaroid {
+  background: #111;
+  padding: 10px;
+  border: 3px solid #333;
+  width: 150px;
+  height: 200px;
+  position: relative;
+  transform: rotate(var(--angle));
+  box-shadow: 0 0 10px #0af;
+  animation: float 3s ease-in-out infinite alternate;
+}
+
+.polaroid img {
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+}
+
+.caption {
+  font-size: 0.4rem;
+  color: #fff;
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  text-align: center;
+}
+
+@keyframes float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
+}
